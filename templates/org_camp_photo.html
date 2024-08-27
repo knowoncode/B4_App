@@ -1,0 +1,48 @@
+{% extends "org_layout.html" %}
+
+{% block content %}   
+    
+    
+
+
+    <div class="container w-50 p-5 mt-5 rounded shadow-lg mybg">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <h1>Upload Camp Photo</h1>
+        <form action="/org_camp_photo?campID={{campID}}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
+                <label for="">Upload Photo</label>
+                <input class="form-control" type="file" name="photo">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-danger mt-3" type="submit">upload now</button>
+            </div>
+        </div>
+    </form>
+    <hr>
+    
+    <div class="row">
+        {% if photo %}
+        {% for p in photo %}
+        <div class="col-6 mt-2 text-center">
+            <img class="img-fluid h-100" src="../static/camp/{{p[0]}}" alt="">
+            <a href="/org_photo_delete?campPhotoID={{p[1]}}&campID={{p[2]}}"><img src="../static/images/delete.svg" alt=""></a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p class="text-primary">Photo not yet uploaded!!</p>
+        {% endif %}
+    </div>
+    </div>
+{% endblock %}
