@@ -1,6 +1,7 @@
 import mysql.connector
 from flask import session
 
+# its organiser module
 class OrgOperation:
     def connection(self):
         con=mysql.connector.connect(host="localhost",port="3306",user="root",password="root",database="b4_full_stack")
